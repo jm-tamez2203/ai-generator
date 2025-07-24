@@ -1,16 +1,18 @@
-import { FormEvent, useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Loader, Placeholder } from "@aws-amplify/ui-react";
 import "./App.css";
-import { Amplify } from "aws-amplify";
-import { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-import outputs from "../amplify_outputs.json";
 
+import { Amplify } from "aws-amplify";
+import { generateClient } from "aws-amplify/data";
+import type { Schema } from "../amplify/data/resource";
+import outputs from "../amplify_outputs.json";
 
 import "@aws-amplify/ui-react/styles.css";
 
+// Configura Amplify
 Amplify.configure(outputs);
 
+// Crea cliente Amplify Data
 const amplifyClient = generateClient<Schema>({
   authMode: "userPool",
 });
@@ -25,19 +27,21 @@ function App() {
 
     try {
       const formData = new FormData(event.currentTarget);
-      
+      const ingredients = formData.get("ingredients")?.toString() || "";
+
       const { data, errors } = await amplifyClient.queries.askBedrock({
-        ingredients: [formData.get("ingredients")?.toString() || ""],
+        ingredients: [ingredients],
       });
 
       if (!errors) {
         setResult(data?.body || "No data returned");
       } else {
-        console.log(errors);
+        console.error(errors);
+        setResult("An error occurred while fetching the recipe.");
       }
 
-  
     } catch (e) {
+      console.error(e);
       alert(`An error occurred: ${e}`);
     } finally {
       setLoading(false);
