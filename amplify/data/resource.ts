@@ -8,7 +8,7 @@ const schema = a.schema({
 
   askBedrock: a
     .query()
-    .arguments({ ingredients: a.string().array() })
+    .arguments({ prompt: a.string() }) // ✅ espera prompt como string
     .returns(a.ref("BedrockResponse"))
     .authorization((allow) => [allow.authenticated()])
     .handler(

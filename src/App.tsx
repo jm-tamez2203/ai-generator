@@ -51,12 +51,11 @@ function App() {
     <div className="app-container">
       <div className="header-container">
         <h1 className="main-header">
-          Ask <br />
-          <span className="highlight">Anything</span>
+          Gelpharma <br />
+          <span className="highlight">Consultor Personal</span>
         </h1>
         <p className="description">
-          Type your question or request below, and our Claude-powered assistant
-          will answer it!
+          Ingresa tu pregunta y te responderé
         </p>
       </div>
       <form onSubmit={onSubmit} className="form-container">
@@ -66,7 +65,7 @@ function App() {
             className="wide-input"
             id="prompt"
             name="prompt" // ✅ cambiar el name del input
-            placeholder="What would you like to ask?"
+            placeholder="Que te gustaría preguntar?"
           />
           <button type="submit" className="search-button">
             Ask
