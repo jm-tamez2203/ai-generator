@@ -5,7 +5,7 @@ import "./App.css";
 import { Amplify } from "aws-amplify";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "../amplify/data/resource";
-import amplifyOutputs from './amplify_outputs.json';
+import amplifyOutputs from "./amplify_outputs.json";
 
 import "@aws-amplify/ui-react/styles.css";
 
@@ -27,19 +27,18 @@ function App() {
 
     try {
       const formData = new FormData(event.currentTarget);
-      const ingredients = formData.get("ingredients")?.toString() || "";
+      const prompt = formData.get("prompt")?.toString() || "";
 
       const { data, errors } = await amplifyClient.queries.askBedrock({
-        ingredients: [ingredients],
+        prompt, // ✅ enviar el prompt como string
       });
 
       if (!errors) {
         setResult(data?.body || "No data returned");
       } else {
         console.error(errors);
-        setResult("An error occurred while fetching the recipe.");
+        setResult("An error occurred while processing your prompt.");
       }
-
     } catch (e) {
       console.error(e);
       alert(`An error occurred: ${e}`);
@@ -52,14 +51,12 @@ function App() {
     <div className="app-container">
       <div className="header-container">
         <h1 className="main-header">
-          Meet Your Personal
-          <br />
-          <span className="highlight">Recipe AI</span>
+          Ask <br />
+          <span className="highlight">Anything</span>
         </h1>
         <p className="description">
-          Simply type a few ingredients using the format ingredient1,
-          ingredient2, etc., and Recipe AI will generate an all-new recipe on
-          demand...
+          Type your question or request below, and our Claude-powered assistant
+          will answer it!
         </p>
       </div>
       <form onSubmit={onSubmit} className="form-container">
@@ -67,12 +64,12 @@ function App() {
           <input
             type="text"
             className="wide-input"
-            id="ingredients"
-            name="ingredients"
-            placeholder="Ingredient1, Ingredient2, Ingredient3,...etc"
+            id="prompt"
+            name="prompt" // ✅ cambiar el name del input
+            placeholder="What would you like to ask?"
           />
           <button type="submit" className="search-button">
-            Generate
+            Ask
           </button>
         </div>
       </form>
