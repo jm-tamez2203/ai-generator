@@ -25,5 +25,6 @@ dist-ssr
 
 # amplify
 .amplify
+!src/amplify_outputs.json
 amplify_outputs*
 amplifyconfiguration*
