@@ -10,7 +10,7 @@ import amplifyOutputs from './amplify_outputs.json';
 import "@aws-amplify/ui-react/styles.css";
 
 // Configura Amplify
-Amplify.configure(outputs);
+Amplify.configure(amplifyOutputs);
 
 // Crea cliente Amplify Data
 const amplifyClient = generateClient<Schema>({
