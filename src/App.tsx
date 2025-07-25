@@ -52,7 +52,7 @@ function App() {
       <div className="header-container">
         <h1 className="main-header">
           Gelpharma <br />
-          <span className="highlight">Consultor Personal</span>
+          <span className="highlight">Consultor Personal de MC</span>
         </h1>
         <p className="description">
           Ingresa tu pregunta y te responderé
@@ -68,7 +68,7 @@ function App() {
             placeholder="Que te gustaría preguntar?"
           />
           <button type="submit" className="search-button">
-            Ask
+            Pregunta
           </button>
         </div>
       </form>
