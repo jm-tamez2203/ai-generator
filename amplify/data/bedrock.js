@@ -2,7 +2,7 @@ export function request(ctx) {
     const { ingredients = [] } = ctx.args;
   
     // Construct the prompt with the provided ingredients
-    const prompt = `Suggest a recipe idea using these ingredients: ${ingredients.join(", ")}.`;
+    const prompt = `Sugiere una receta usando estos ingredientes: ${ingredients.join(", ")}.`;
   
     // Return the request configuration
     return {
@@ -34,7 +34,7 @@ export function request(ctx) {
   export function response(ctx) {
     // Parse the response body
     const parsedBody = JSON.parse(ctx.result.body);
-    // Extract the text content from the response
+    // Extract the text  contentfrom the response
     const res = {
       body: parsedBody.content[0].text,
     };
