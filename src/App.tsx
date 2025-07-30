@@ -68,10 +68,10 @@ function App() {
             className="wide-input"
             id="ingredients"
             name="ingredients"
-            placeholder="Ingredient1, Ingredient2, Ingredient3,...etc"
+            placeholder="Ingrediente1, Ingrediente2, Ingrediente3,...etc"
           />
           <button type="submit" className="search-button">
-            Generate
+            Generar
           </button>
         </div>
       </form>
